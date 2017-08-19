@@ -1,13 +1,38 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Container } from 'semantic-ui-react'
+import Sidebar from './components/layout/Sidebar'
+import ChapterList from './components/chapter/ChapterList'
+import { fetchChapters } from './actions/chapter'
 
 class App extends Component {
+  componentDidMount () {
+    this.props.fetchChapters()
+  }
+
   render() {
     return (
-      <div>
-      </div>
-    );
+      <Router>
+        <div>
+          <Sidebar />
+          <div className='page-content'>
+            <Container>
+              <Switch>
+                <Route exact path='/' component={ChapterList} />
+                <Route exact path='/chapters' component={ChapterList} />
+              </Switch>
+            </Container>
+          </div>
+        </div>
+      </Router>
+    )
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({})
+const mapDispatchToProps = {
+  fetchChapters
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -1,0 +1,10 @@
+{
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Test Title",
+      "summary": "Test Summary",
+      "details": "Test Details"
+    }
+  ]
+}

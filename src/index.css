@@ -3,3 +3,23 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.mb-35 {
+  margin-bottom: 35px;
+}
+
+.page-content {
+  margin-left: 100px;
+  margin-top: 50px;
+}
+
+.action-separator {
+  margin: 0 5px;
+}
+
+/**
+* Menu
+**/
+.ui.inverted.menu .header.item.menu-header {
+  margin: 15px 0 15px 0;
+}
