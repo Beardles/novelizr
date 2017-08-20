@@ -14,7 +14,7 @@ export const createChapter = (chapter) => {
 }
 
 export const updateChapter = (chapter) => {
-    return axios.put(`${baseUrl}/${chapter.number}`, chapter)
+    return axios.put(`${baseUrl}/${chapter.id}`, chapter)
         .then(response => response.data)
 }
 

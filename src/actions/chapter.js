@@ -1,7 +1,6 @@
 import * as api from '../services/chapter'
 
 // Action Types
-export const FETCH_CHAPTERS = '[Chapter] Fetch Chapters'
 export const LOADED_CHAPTERS = '[Chapter] Loaded Chapters'
 export const SELECT_CHAPTER = '[Chapter] Select Chapter'
 export const UPDATE_SELECTED_CHAPTER = '[Chaper] Update Selected Chapter'

@@ -5,11 +5,14 @@ import { Container } from 'semantic-ui-react'
 import Sidebar from './components/layout/Sidebar'
 import ChapterList from './components/chapter/ChapterList'
 import Chapter from './components/chapter/Chapter'
+import CharacterList from './components/character/CharacterList'
 import { fetchChapters } from './actions/chapter'
+import { fetchCharacters } from './actions/character'
 
 class App extends Component {
   componentWillMount () {
     this.props.fetchChapters()
+    this.props.fetchCharacters()
   }
 
   render() {
@@ -23,6 +26,7 @@ class App extends Component {
                 <Route exact path='/' component={ChapterList} />
                 <Route exact path='/chapters' component={ChapterList} />
                 <Route path='/chapters/:chapterId' component={Chapter} />
+                <Route exact path='/characters' component={CharacterList} />
               </Switch>
             </Container>
           </div>
@@ -34,7 +38,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({})
 const mapDispatchToProps = {
-  fetchChapters
+  fetchChapters,
+  fetchCharacters
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
