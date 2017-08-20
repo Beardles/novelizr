@@ -4,10 +4,11 @@ import { connect } from 'react-redux'
 import { Container } from 'semantic-ui-react'
 import Sidebar from './components/layout/Sidebar'
 import ChapterList from './components/chapter/ChapterList'
+import Chapter from './components/chapter/Chapter'
 import { fetchChapters } from './actions/chapter'
 
 class App extends Component {
-  componentDidMount () {
+  componentWillMount () {
     this.props.fetchChapters()
   }
 
@@ -21,6 +22,7 @@ class App extends Component {
               <Switch>
                 <Route exact path='/' component={ChapterList} />
                 <Route exact path='/chapters' component={ChapterList} />
+                <Route path='/chapters/:chapterId' component={Chapter} />
               </Switch>
             </Container>
           </div>

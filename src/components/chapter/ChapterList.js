@@ -10,10 +10,6 @@ import Chapter from '../../domain/Chapter'
 class ChapterList extends Component {
     showEditModal = false
 
-    viewChapterUrl = (chapter) => {
-        return `/chapter/${chapter.number}`
-    }
-
     handleEditClick = (chapter) => {
         this.props.handleSelectChapter(chapter)
         this.showEditModal = true
@@ -26,6 +22,11 @@ class ChapterList extends Component {
 
     handleDeleteClick = (id) => {
         this.props.deleteChapter(id)
+    }
+
+    viewChapter = (chapter) => {
+        this.props.handleSelectChapter(chapter)
+        this.props.history.push(`/chapters/${chapter.id}`)
     }
 
     render () {
@@ -50,12 +51,16 @@ class ChapterList extends Component {
 
                     <Table.Body>
                         { this.props.chapters.map(c => (
-                            <Table.Row key={c.number}>
-                                <Table.Cell><Link to={this.viewChapterUrl(c)}>{ c.number }</Link></Table.Cell>
-                                <Table.Cell><Link to={this.viewChapterUrl(c)}>{ c.title }</Link></Table.Cell>
+                            <Table.Row key={c.id}>
+                                <Table.Cell selectable onClick={() => this.viewChapter(c)}>
+                                    <Link to={`/chapters/${c.id}`} onClick={() => this.viewChapter(c)}>{ c.number }</Link>
+                                </Table.Cell>
+                                <Table.Cell selectable>
+                                    <Link to={`/chapters/${c.id}`} onClick={() => this.viewChapter(c)}>{ c.title }</Link>
+                                </Table.Cell>
                                 <Table.Cell>{ c.summary }</Table.Cell>
                                 <Table.Cell textAlign='center'>
-                                    <Icon link name='eye' />
+                                    <Icon link name='eye' onClick={() => this.viewChapter(c)} />
                                     <span className='action-separator'>|</span>
                                     <Icon link name='pencil' onClick={() => this.handleEditClick(c)} />
                                     <span className='action-separator'>|</span>
@@ -79,7 +84,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDistpatchToProps = (dispatch, router) => {
+const mapDistpatchToProps = (dispatch) => {
     return {
         handleCreateComplete: (chapter) => {
             dispatch(createChapter(chapter))
