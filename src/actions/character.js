@@ -9,22 +9,22 @@ export const REPLACE_CHARACTER = '[Character] Replace Character'
 export const REMOVE_CHARACTER = '[Character] Remove Character'
 
 // Action Creators
-export const loadedCharacters = (characters) => ({ type: LOADED_CHARACTERS, payload: characters })
-export const selectCharacter = (character) => ({ type: SELECT_CHARACTER , payload: character })
-export const updateSelectedCharacter = (value) => ({ type: UPDATE_SELECTED_CHARACTER, payload: value })
-export const addCharacter = (character) => ({ type: ADD_CHARACTER, payload: character })
-export const replaceCharacter = (character) => ({ type: REPLACE_CHARACTER, payload: character })
-export const removeCharacter = (id) => ({ type: REMOVE_CHARACTER, payload: id })
+export const loadedCharacters = characters => ({ type: LOADED_CHARACTERS, payload: characters })
+export const selectCharacter = character => ({ type: SELECT_CHARACTER , payload: character })
+export const updateSelectedCharacter = value => ({ type: UPDATE_SELECTED_CHARACTER, payload: value })
+export const addCharacter = character => ({ type: ADD_CHARACTER, payload: character })
+export const replaceCharacter = character => ({ type: REPLACE_CHARACTER, payload: character })
+export const removeCharacter = id => ({ type: REMOVE_CHARACTER, payload: id })
 
 export const fetchCharacters = () => {
-    return (dispatch) => {
+    return dispatch => {
         api.loadCharacters()
             .then(characters => dispatch(loadedCharacters(characters)))
     }
 }
 
-export const createCharacter = (character) => {
-    return (dispatch) => {
+export const createCharacter = character => {
+    return dispatch => {
         api.createCharacter(character)
             .then(c => {
                 dispatch(selectCharacter(null))
@@ -34,8 +34,8 @@ export const createCharacter = (character) => {
     }
 }
 
-export const updateCharacter = (character) => {
-    return (dispatch) => {
+export const updateCharacter = character => {
+    return dispatch => {
         api.updateCharacter(character)
             .then(c => {
                 dispatch(selectCharacter(null))
@@ -45,8 +45,8 @@ export const updateCharacter = (character) => {
     }
 }
 
-export const deleteCharacter = (id) => {
-    return (dispatch) => {
+export const deleteCharacter = id => {
+    return dispatch => {
         api.deleteCharacter(id)
             .then(() => dispatch(removeCharacter(id)))
     }

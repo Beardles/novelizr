@@ -10,7 +10,7 @@ import Chapter from '../../domain/Chapter'
 class ChapterList extends Component {
     showEditModal = false
 
-    handleEditClick = (chapter) => {
+    handleEditClick = chapter => {
         this.props.handleSelectChapter(chapter)
         this.showEditModal = true
     }
@@ -20,11 +20,11 @@ class ChapterList extends Component {
         this.showEditModal = true
     }
 
-    handleDeleteClick = (id) => {
+    handleDeleteClick = id => {
         this.props.deleteChapter(id)
     }
 
-    viewChapter = (chapter) => {
+    viewChapter = chapter => {
         this.props.handleSelectChapter(chapter)
         this.props.history.push(`/chapters/${chapter.id}`)
     }
@@ -77,31 +77,31 @@ class ChapterList extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
         chapters: state.chapter.chapters,
         selectedChapter: state.chapter.selectedChapter
     }
 }
 
-const mapDistpatchToProps = (dispatch) => {
+const mapDistpatchToProps = dispatch => {
     return {
-        handleCreateComplete: (chapter) => {
+        handleCreateComplete: chapter => {
             dispatch(createChapter(chapter))
         },
-        handleEditComplete: (chapter) => {
+        handleEditComplete: chapter => {
             dispatch(updateChapter(chapter))
         },
         handleEditCancel: () => {
             dispatch(selectChapter(null))
         },
-        handleSelectChapter: (chapter) => {
+        handleSelectChapter: chapter => {
             dispatch(selectChapter(chapter))
         },
-        updateSelectedChapter: (value) => {
+        updateSelectedChapter: value => {
             dispatch(updateSelectedChapter(value))
         },
-        deleteChapter: (id) => {
+        deleteChapter: id => {
             dispatch(deleteChapter(id))
         }
     }

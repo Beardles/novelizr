@@ -1,22 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Divider, Header, Message, Segment } from 'semantic-ui-react'
-import { updateChapter, updateSelectedChapter, selectChapter } from '../../actions/chapter'
+import { selectChapter } from '../../actions/chapter'
 
 // TODO: Edit this inline instead of forcing to go back to table
 class Chapter extends Component {
-    constructor (props) {
-        super(props)
-        this.state = {
-            editingChapter: false
-        }
-    }
-
-    handleEditClick = () => {
-        this.setState({ editingChapter: true})
-    }
-
-    setChapterFromRoute = (chapters) => {
+    setChapterFromRoute = chapters => {
         const chapterId = this._getChapterIdFromParams()
         const chapter = chapters.filter(c => c.id === chapterId)[0]
         this.props.handleSelectChapter(chapter)
@@ -74,18 +63,16 @@ class Chapter extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
         chapters: state.chapter.chapters,
         chapter: state.chapter.selectedChapter
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
-        handleSelectChapter: (chapter) => dispatch(selectChapter(chapter)),
-        updateChapter,
-        updateSelectedChapter
+        handleSelectChapter: chapter => dispatch(selectChapter(chapter))
     }
 }
 

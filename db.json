@@ -6,8 +6,31 @@
       "title": "Test Title",
       "summary": "Test Summary",
       "details": "Test Details"
+    },
+    {
+      "id": "2",
+      "number": "2",
+      "title": "Tlkj",
+      "summary": "lkj",
+      "details": "lkj"
     }
   ],
   "characters": [
+    {
+      "id": "6b30f78d-8920-47ee-a97e-b5e406ed2a8a",
+      "honorific": "",
+      "firstName": "Fisher",
+      "middleName": "",
+      "lastName": "Stevens",
+      "suffix": "",
+      "gender": "",
+      "age": 0,
+      "birthDate": "",
+      "education": "",
+      "familyInfo": "",
+      "birthPlace": "",
+      "currentLocation": "",
+      "details": ""
+    }
   ]
 }

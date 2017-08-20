@@ -7,18 +7,18 @@ export const loadChapters = () => {
         .then(response => response.data)
 }
 
-export const createChapter = (chapter) => {
+export const createChapter = chapter => {
     chapter.id = chapter.number
     return axios.post(baseUrl, chapter)
         .then(response => response.data)
 }
 
-export const updateChapter = (chapter) => {
+export const updateChapter = chapter => {
     return axios.put(`${baseUrl}/${chapter.id}`, chapter)
         .then(response => response.data)
 }
 
-export const deleteChapter = (id) => {
+export const deleteChapter = id => {
     return axios.delete(`${baseUrl}/${id}`)
         .then(response => response.data)
 }

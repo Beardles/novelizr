@@ -12,7 +12,7 @@ const ChapterEdit = ({ open, selectedChapter, updateSelectedChapter, handleCreat
     return (
         <Modal open={open} closeIcon={true} onClose={handleEditCancel}>
             <Header icon={isNew ? 'plus' : 'pencil' }
-                content={isNew ? 'Create a New Chapter' : `Edit Chapter ${selectedChapter.number}` } />
+                content={isNew ? 'Create a New Chapter' : `Edit Chapter ${selectedChapter.number}`} />
             <Modal.Content>
                 <ChapterForm chapter={selectedChapter} updateSelectedChapter={updateSelectedChapter} />
             </Modal.Content>

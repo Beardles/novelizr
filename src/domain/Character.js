@@ -7,12 +7,13 @@ class Character {
         this.lastName = props.lastName || ''
         this.suffix = props.suffix || ''
         this.gender = props.gender || ''
-        this.age = props.age || ''
-        this.birthDate = props.birthDate || null
+        this.age = props.age || 0
+        this.birthDate = props.birthDate || ''
         this.education = props.education || ''
         this.familyInfo = props.familyInfo || ''
         this.birthPlace = props.birthPlace || ''
         this.currentLocation = props.currentLocation || ''
+        this.details = props.details || ''
     }
 
     get fullName () {

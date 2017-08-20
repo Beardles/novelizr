@@ -8,18 +8,18 @@ export const loadCharacters = () => {
         .then(response => response.data)
 }
 
-export const createCharacter = (character) => {
+export const createCharacter = character => {
     character.id = uuid()
     return axios.post(baseUrl, character)
         .then(response => response.data)
 }
 
-export const updateCharacter = (character) => {
+export const updateCharacter = character => {
     return axios.put(`${baseUrl}/${character.id}`, character)
         .then(response => response.data)
 }
 
-export const deleteCharacter = (id) => {
+export const deleteCharacter = id => {
     return axios.delete(`${baseUrl}/${id}`)
         .then(response => response.data)
 }
