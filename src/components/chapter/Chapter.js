@@ -1,14 +1,26 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Divider, Header, Message, Segment } from 'semantic-ui-react'
+import { createSelector } from 'reselect'
+import { Button, Divider, Grid, Header, Icon, Message, Segment } from 'semantic-ui-react'
 import { selectChapter } from '../../actions/chapter'
+import { createCharacterCard, selectCharacterCard, deleteCharacterCard, updateSelectedCharacterCard } from '../../actions/characterCard'
+import Card from '../../domain/CharacterCard'
+import CharacterCard from '../characterCard/CharacterCard'
+import CharacterCardEdit from '../characterCard/CharacterCardEdit'
 
 // TODO: Edit this inline instead of forcing to go back to table
 class Chapter extends Component {
+    editingCharacterCard = false
+
     setChapterFromRoute = chapters => {
         const chapterId = this._getChapterIdFromParams()
         const chapter = chapters.filter(c => c.id === chapterId)[0]
         this.props.handleSelectChapter(chapter)
+    }
+
+    handleAddNewCharacterCardClick = () => {
+        this.props.handleSelectCharacterCard(new Card({ chapterId: this.props.chapter.id }))
+        this.editingCharacterCard = true
     }
 
     render () {
@@ -43,6 +55,26 @@ class Chapter extends Component {
                     </Segment>
                     <Divider />
                     <Header as='h2'>Character Details</Header>
+                    <div className='mb-35'>
+                        <Button color='teal' onClick={this.handleAddNewCharacterCardClick}>
+                            <Icon name='plus' />
+                            Add New
+                        </Button>
+                    </div>
+                    <Grid>
+                        <Grid.Row columns={3}>
+                            { this.props.characterCards.map(characterCard => (
+                                <Grid.Column key={characterCard.id}>
+                                    <CharacterCard
+                                        characterCard={characterCard}
+                                        handleDeleteClick={() => this.props.handleDeleteCharacterCard(characterCard.id)}
+                                    />
+                                </Grid.Column>
+                            ))}
+                        </Grid.Row>
+                    </Grid>
+
+                    <CharacterCardEdit open={this.editingCharacterCard} {...this.props} />
                 </div>
             )
         } else {
@@ -59,20 +91,41 @@ class Chapter extends Component {
     }
 
     _getChapterIdFromParams = () => {
-        return parseInt(this.props.match.params.chapterId, 10)
+        return this.props.match.params.chapterId
     }
 }
+
+// Computed State
+const characterCardsSelector = state => state.characterCard.characterCards
+const selectedChapterSelector = state => state.chapter.selectedChapter
+const characterCardsForChapterSelector = createSelector(
+    characterCardsSelector,
+    selectedChapterSelector,
+    (characterCards, selectedChapter) => !selectedChapter ? [] : characterCards.filter(characterCard => characterCard.chapterId === selectedChapter.id)
+)
 
 const mapStateToProps = state => {
     return {
         chapters: state.chapter.chapters,
-        chapter: state.chapter.selectedChapter
+        chapter: state.chapter.selectedChapter,
+        characters: state.character.characters,
+        characterCards: characterCardsForChapterSelector(state),
+        selectedCharacterCard: state.characterCard.selectedCharacterCard
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        handleSelectChapter: chapter => dispatch(selectChapter(chapter))
+        handleSelectChapter: chapter => dispatch(selectChapter(chapter)),
+        handleSelectCharacterCard: characterCard => dispatch(selectCharacterCard(characterCard)),
+        handleDeleteCharacterCard: id => dispatch(deleteCharacterCard(id)),
+        handleEditCancel: () => {
+            dispatch(selectCharacterCard(null))
+        },
+        handleCreateComplete: characterCard => {
+            dispatch(createCharacterCard(characterCard))
+        },
+        updateSelectedCharacterCard: characterCard => dispatch(updateSelectedCharacterCard(characterCard))
     }
 }
 

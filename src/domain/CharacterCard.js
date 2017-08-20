@@ -1,9 +1,13 @@
+import uuid from 'uuid4'
+
 class CharacterCard {
-    constructor (props) {
-        this.characterId = props.characterId
-        this.details = props.details
-        this.motivations = props.motivations
-        this.interactions = props.interactions
+    constructor (props = {}) {
+        this.id = props.id || uuid()
+        this.chapterId = props.chapterId || ''
+        this.character = props.character || ''
+        this.details = props.details || ''
+        this.motivations = props.motivations || ''
+        this.interactions = props.interactions || ''
     }
 }
 

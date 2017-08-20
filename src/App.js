@@ -9,11 +9,13 @@ import CharacterList from './components/character/CharacterList'
 import Character from './components/character/Character'
 import { fetchChapters } from './actions/chapter'
 import { fetchCharacters } from './actions/character'
+import { fetchCharacterCards } from './actions/characterCard'
 
 class App extends Component {
   componentWillMount () {
     this.props.fetchChapters()
     this.props.fetchCharacters()
+    this.props.fetchCharacterCards()
   }
 
   render() {
@@ -41,7 +43,8 @@ class App extends Component {
 const mapStateToProps = state => ({})
 const mapDispatchToProps = {
   fetchChapters,
-  fetchCharacters
+  fetchCharacters,
+  fetchCharacterCards
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

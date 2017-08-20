@@ -1,36 +1,39 @@
 {
   "chapters": [
     {
-      "id": 1,
-      "number": 1,
-      "title": "Test Title",
-      "summary": "Test Summary",
-      "details": "Test Details"
-    },
-    {
-      "id": "2",
-      "number": "2",
-      "title": "Tlkj",
-      "summary": "lkj",
-      "details": "lkj"
+      "id": "1",
+      "number": "1",
+      "title": "Chapter 1",
+      "summary": "Chapter 1 Summary",
+      "details": "Chapter 1 Details"
     }
   ],
   "characters": [
     {
-      "id": "6b30f78d-8920-47ee-a97e-b5e406ed2a8a",
+      "id": "448ad39d-01a8-41e3-b939-47cdefb4232a",
       "honorific": "",
-      "firstName": "Fisher",
+      "firstName": "Test",
       "middleName": "",
-      "lastName": "Stevens",
+      "lastName": "Character",
       "suffix": "",
-      "gender": "",
-      "age": 0,
+      "gender": "F",
+      "age": "33",
       "birthDate": "",
       "education": "",
       "familyInfo": "",
       "birthPlace": "",
       "currentLocation": "",
       "details": ""
+    }
+  ],
+  "characterCards": [
+    {
+      "id": "1ce0b6f7-7a90-4a69-9b4f-60bda73c9b4a",
+      "chapterId": "1",
+      "character": "Test Character",
+      "details": "Test Details",
+      "motivations": "Test Motivations",
+      "interactions": "Test Interactions"
     }
   ]
 }

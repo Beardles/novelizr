@@ -50,5 +50,6 @@ export const deleteChapter = id => {
     return dispatch => {
         api.deleteChapter(id)
             .then(() => dispatch(removeChapter(id)))
+            .catch(e => console.log(e))
     }
 }

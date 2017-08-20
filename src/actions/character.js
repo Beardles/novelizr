@@ -20,6 +20,7 @@ export const fetchCharacters = () => {
     return dispatch => {
         api.loadCharacters()
             .then(characters => dispatch(loadedCharacters(characters)))
+            .catch(e => console.log(e))
     }
 }
 
@@ -49,5 +50,6 @@ export const deleteCharacter = id => {
     return dispatch => {
         api.deleteCharacter(id)
             .then(() => dispatch(removeCharacter(id)))
+            .catch(e => console.log(e))
     }
 }
