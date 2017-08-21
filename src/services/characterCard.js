@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:8080/characterCards'
+const baseUrl = process.env.REACT_APP_BASE_CHARACTER_CARD_URL
 
 export const fetchCharacterCards = () => {
     return axios.get(baseUrl)

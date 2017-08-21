@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:8080/chapters'
+const baseUrl = process.env.REACT_APP_BASE_CHAPTER_URL
 
 export const loadChapters = () => {
     return axios.get(baseUrl)
