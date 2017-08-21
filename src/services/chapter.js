@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = process.env.REACT_APP_BASE_CHAPTER_URL
+const baseUrl = process.env.NOVELIZR_BASE_CHAPTER_URL
 
 export const loadChapters = () => {
     return axios.get(baseUrl)
