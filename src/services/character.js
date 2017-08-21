@@ -1,7 +1,7 @@
 import axios from 'axios'
 import uuid from 'uuid4'
 
-const baseUrl = process.env.NOVELIZR_BASE_CHARACTER_URL
+const baseUrl = process.env.REACT_APP_BASE_CHARACTER_URL
 
 export const loadCharacters = () => {
     return axios.get(baseUrl)
